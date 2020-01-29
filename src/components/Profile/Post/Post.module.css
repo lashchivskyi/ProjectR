@@ -1,0 +1,8 @@
+.AllPost {
+  grid-area: c;
+  background-color: yellowgreen;
+}
+
+.AllPost img {
+  width: 70px;
+} 
