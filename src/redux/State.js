@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+    console.log("State chainged");
+}
 
 let state = {
     profilePage: {
@@ -29,7 +31,7 @@ let state = {
 
 window.state = state;
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
@@ -37,12 +39,16 @@ export let addPost = () => {
     };
     state.profilePage.posts.push(newPost); // добавляєм пост
     message: state.profilePage.newPostText = "";
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText; // добавляєм пост
-    rerenderEntireTree(state);
+    rerenderEntireTree();
+}
+
+export const cubscribe = (observer) => {
+    rerenderEntireTree = observer;
 }
 
 export default state;
