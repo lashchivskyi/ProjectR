@@ -12,19 +12,20 @@ import Settings from "./components/Profile/Settings/Settings.jsx";
 
 const App = (props) => {
   return (
-    <BrowserRouter>
-      <div className="AppWrapper">
-        <Header />
-        <Nav />
-        <div class="AppWrapperContent">
-          <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
-          <Route path="/profile" render={() => <Profile state={props.state.profilePage} />} />
-          <Route path="/music" component={Music} />
-          <Route path="/news" component={News} />
-          <Route path="/settings" component={Settings} />
-        </div>
+    <div className="AppWrapper">
+      <Header />
+      <Nav />
+      <div class="AppWrapperContent">
+        <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
+        <Route path="/profile" render={() => <Profile
+          profilePage={props.state.profilePage}
+          addPost={props.addPost}
+          updateNewPostText={props.updateNewPostText} />} />
+        <Route path="/music" component={Music} />
+        <Route path="/news" component={News} />
+        <Route path="/settings" component={Settings} />
       </div>
-    </BrowserRouter>
+    </div>
   );
 }
 
