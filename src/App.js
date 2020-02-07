@@ -9,24 +9,31 @@ import Music from "./components/Profile/Music/Music.jsx";
 import News from "./components/Profile/News/News.jsx";
 import Settings from "./components/Profile/Settings/Settings.jsx";
 
-
-const App = (props) => {
+const App = props => {
   return (
     <div className="AppWrapper">
       <Header />
       <Nav />
       <div class="AppWrapperContent">
-        <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
-        <Route path="/profile" render={() => <Profile
-          profilePage={props.state.profilePage}
-          addPost={props.addPost}
-          updateNewPostText={props.updateNewPostText} />} />
+        <Route
+          path="/dialogs"
+          render={() => <Dialogs state={props.state.dialogsPage} />}
+        />
+        <Route
+          path="/profile"
+          render={() => (
+            <Profile
+              profilePage={props.state.profilePage}
+              dispatch={props.dispatch}
+            />
+          )}
+        />
         <Route path="/music" component={Music} />
         <Route path="/news" component={News} />
         <Route path="/settings" component={Settings} />
       </div>
     </div>
   );
-}
+};
 
 export default App;
