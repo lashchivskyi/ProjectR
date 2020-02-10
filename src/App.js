@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import Music from "./components/Profile/Music/Music.jsx";
 import News from "./components/Profile/News/News.jsx";
 import Settings from "./components/Profile/Settings/Settings.jsx";
+import store from "./redux/State";
 
 const App = props => {
   return (
@@ -17,7 +18,7 @@ const App = props => {
       <div class="AppWrapperContent">
         <Route
           path="/dialogs"
-          render={() => <Dialogs state={props.state.dialogsPage} />}
+          render={() => <Dialogs store={props.store} />}
         />
         <Route
           path="/profile"
