@@ -10,24 +10,17 @@ import Settings from "./components/Profile/Settings/Settings.jsx";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 
-const App = props => {
+const App = (props) => {
   return (
     <div className="AppWrapper">
       <Header />
       <Nav />
       <div class="AppWrapperContent">
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
 
-        <Route
-          path="/dialogs"
-          render={() => <DialogsContainer />} />
+        <Route path="/profile" render={() => <Profile />} />
 
-        <Route
-          path="/profile"
-          render={() => <Profile />} />
-
-        <Route
-          path="/users"
-          render={() => <UsersContainer />} />
+        <Route path="/users" render={() => <UsersContainer />} />
 
         <Route path="/music" component={Music} />
         <Route path="/news" component={News} />
