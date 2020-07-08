@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
 import { NavLink } from "react-router-dom";
-import * as axios from "axios";
 
 const Users = (props) => {
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -43,23 +42,7 @@ const Users = (props) => {
                 <button
                   disabled={props.followingInProgres.some((id) => id === u.id)}
                   onClick={() => {
-                    props.toggleFollowingProgres(true, u.id);
-                    axios
-                      .delete(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                        {
-                          withCredentials: true,
-                          headers: {
-                            "API-KEY": "8260532d-6680-470c-8205-607fd1075ac0",
-                          },
-                        }
-                      )
-                      .then((response) => {
-                        if (response.data.resultCode === 0) {
-                          props.unfollow(u.id);
-                        }
-                        props.toggleFollowingProgres(false, u.id);
-                      });
+                    props.unfollow(u.id);
                   }}
                 >
                   Unfollow
@@ -68,24 +51,7 @@ const Users = (props) => {
                 <button
                   disabled={props.followingInProgres.some((id) => id === u.id)}
                   onClick={() => {
-                    props.toggleFollowingProgres(true, u.id);
-                    axios
-                      .post(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                        {},
-                        {
-                          withCredentials: true,
-                          headers: {
-                            "API-KEY": "8260532d-6680-470c-8205-607fd1075ac0",
-                          },
-                        }
-                      )
-                      .then((response) => {
-                        if (response.data.resultCode === 0) {
-                          props.follow(u.id);
-                        }
-                        props.toggleFollowingProgres(false, u.id);
-                      });
+                    props.follow(u.id);
                   }}
                 >
                   Follow
