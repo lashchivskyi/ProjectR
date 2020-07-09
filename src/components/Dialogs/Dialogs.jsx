@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Dialogs.module.css";
 import Messages from "./Message/Message.jsx";
 import DialogItem from "./DialogItems/DialogItems.jsx";
+import { Redirect } from "react-router-dom";
 //import { updateNewMessageBodyCreator, sendMessageCreator } from "../../redux/dialogs-reducer"
 
 const Dialogs = (props) => {
@@ -23,6 +24,8 @@ const Dialogs = (props) => {
     let body = e.target.value;
     props.updateNewMessageBody(body);
   };
+
+  if (props.isAuth === false) return <Redirect to={"/login"} />;
 
   return (
     <div className={classes.Dialogs}>
