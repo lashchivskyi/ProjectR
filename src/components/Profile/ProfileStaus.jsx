@@ -1,9 +1,13 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
 
-class ProfileStaus extends React.Component {
+class ProfileStatus extends React.Component {
+  // statusInputRef = React.createRef();
+  // this.props.updateStatus(this.statusInputRef.current.value);
+
   state = {
     editMode: false,
+    status: this.props.status,
   };
 
   activateEditMode = () => {
@@ -15,14 +19,31 @@ class ProfileStaus extends React.Component {
     this.setState({
       editMode: false,
     });
+
+    this.props.updateStatus(this.state.status);
+  };
+  onStatusChange = (e) => {
+    this.setState({
+      status: e.currentTarget.value,
+    });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status)
+      this.setState({
+        status: this.props.status,
+      });
+
+    console.log("componentDidUpdate");
+  }
+
   render() {
+    console.log("render");
     return (
       <div className={classes.container}>
         {!this.state.editMode && (
           <div>
-            <span onDoubleClick={this.activateEditMode}>
+            <span onDoubleClick={this.activateEditMode || "-----"}>
               {this.props.status}
             </span>
           </div>
@@ -30,9 +51,10 @@ class ProfileStaus extends React.Component {
         {this.state.editMode && (
           <div>
             <input
+              onChange={this.onStatusChange}
               autoFocus={true}
               onBlur={this.deactivateEditMode}
-              value={this.props.status}
+              value={this.state.status}
             ></input>
           </div>
         )}
@@ -41,4 +63,4 @@ class ProfileStaus extends React.Component {
   }
 }
 
-export default ProfileStaus;
+export default ProfileStatus;

@@ -3,7 +3,7 @@ import * as axios from "axios";
 const instance = axios.create({
   withCredentials: true,
   headers: {
-    "API-KEY": "63772bac-3687-414e-b256-6af4573c7a47",
+    "API-KEY": "e32cf294-4f31-48b5-aceb-a23402309233",
   },
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
 });
@@ -23,9 +23,23 @@ export const userAPI = {
     return instance.delete(`follow/${userId}`);
   },
   getProfile(userId) {
-    return instance.get(`profile/` + userId);
+    console.warn("Obsolete method.");
+    return profileAPI.getProfile(userId);
   },
 };
+
+export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`profile/` + userId);
+  },
+  getStatus(userId) {
+    return instance.get(`profile/status/` + userId);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status: status });
+  },
+};
+
 export const authAPI = {
   me() {
     return instance.get(`auth/me`);
