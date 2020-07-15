@@ -8,7 +8,7 @@ let initialState = {
     { id: 1, message: "Hi,haw yu doing", likesCount: 234 },
     { id: 2, message: "Hello", likesCount: 134 },
   ],
-  newPostText: "it-kam.com",
+  newPostText: "lalala",
   profile: null,
 };
 
@@ -52,6 +52,7 @@ export const setUserProfile = (profile) => ({
   type: SET_USERS_PROFILE,
   profile,
 });
+
 export const getUserProfile = (userId) => (dispatch) => {
   userAPI.getProfile(userId).then((response) => {
     dispatch(setUserProfile(response.data));

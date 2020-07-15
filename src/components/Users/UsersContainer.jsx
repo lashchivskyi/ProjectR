@@ -87,6 +87,6 @@ let mapDispatchToProps = (dispatch) => {
     toggleIsFetchingAC: (isFetching) => {
       dispatch(toggleIsFetchingAC(isFetching));
     },
-  };
+  }; 
 };
 */

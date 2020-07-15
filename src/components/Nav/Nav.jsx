@@ -1,6 +1,6 @@
 import React from "react";
-import './Nav.css';
-import { NavLink } from 'react-router-dom';
+import "./Nav.css";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
@@ -12,10 +12,10 @@ const Nav = () => {
         <NavLink to="/dialogs">Massages</NavLink>
       </div>
       <div>
-        <NavLink to="/news">News</NavLink>
+        <NavLink to="/users">Users</NavLink>
       </div>
       <div>
-        <NavLink to="/users">Users</NavLink>
+        <NavLink to="/news">News</NavLink>
       </div>
       <div>
         <NavLink to="/music">Music</NavLink>
@@ -23,7 +23,8 @@ const Nav = () => {
       <div>
         <NavLink to="/settings">Settings</NavLink>
       </div>
-    </nav>);
-}
+    </nav>
+  );
+};
 
 export default Nav;
