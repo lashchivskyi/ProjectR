@@ -2,6 +2,11 @@ import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "../Post/Post";
 import { reduxForm, Field } from "redux-form";
+import {
+  required,
+  maxLengthCreator,
+} from "../../../utilits/validator/validator";
+import { Texterea } from "../../../common/formsControls/formsControls";
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((p) => (
@@ -21,24 +26,25 @@ const MyPosts = (props) => {
   );
 };
 
+const maxLength10 = maxLengthCreator(10);
+
 const MyPostsForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
         <div>
-          <Field name="newPostText" component="textarea"></Field>
+          <Field
+            name="newPostText"
+            component={Texterea}
+            validate={[required, maxLength10]}
+            placeholder="text"
+          ></Field>
         </div>
         <div>
           <button>Add comit</button>
         </div>
       </div>
     </form>
-
-    // <Field
-    //   component="textarea"
-    //   name="newMessageChange"
-    //   placeholder="Enter your message"
-    // ></Field>
   );
 };
 
