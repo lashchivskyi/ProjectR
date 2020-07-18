@@ -14,12 +14,16 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     this.props.getUserProfile(userId);
-    // setTimeout(() => {
     this.props.getStatus(userId);
-    // }, 1000);
 
     if (!userId) {
-      return this.props.getUserProfile(6258);
+      userId = this.props.autorizateUserId;
+      if (!userId) {
+        this.props.history.push("/login");
+      }
+      // if (!userId) {
+      //   this.props.authAPI.meTwo();
+      // }
     }
   }
 
@@ -38,6 +42,8 @@ let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    autorizateUserId: state.auth.userId,
+    isAuth: state.auth.isAuth,
   };
 };
 

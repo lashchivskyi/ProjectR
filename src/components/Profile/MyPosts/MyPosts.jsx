@@ -6,7 +6,7 @@ import {
   required,
   maxLengthCreator,
 } from "../../../utilits/validator/validator";
-import { Texterea } from "../../../common/formsControls/formsControls";
+import { Textarea } from "../../../common/formsControls/formsControls";
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((p) => (
@@ -35,7 +35,7 @@ const MyPostsForm = (props) => {
         <div>
           <Field
             name="newPostText"
-            component={Texterea}
+            component={Textarea}
             validate={[required, maxLength10]}
             placeholder="text"
           ></Field>

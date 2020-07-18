@@ -44,6 +44,9 @@ export const authAPI = {
   me() {
     return instance.get(`auth/me`);
   },
+  // meTwo() {
+  //   return instance.get(`profile/6258`);
+  // },
   login(email, password, rememberMe = false) {
     return instance.post(`auth/login`, { email, password, rememberMe });
   },

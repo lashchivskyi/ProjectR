@@ -5,3 +5,10 @@
 .formControll.error span {
   color: red;
 }
+
+.formError {
+  border: solid orange 2px;
+  padding: 5px 5px 5px 5px;
+  color: brown;
+  /* display: inline; */
+}
