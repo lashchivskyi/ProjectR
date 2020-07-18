@@ -5,23 +5,28 @@ import {
   unfollow,
   setCurrentPage,
   toggleFollowingProgres,
-  getUsersThunkCreator,
+  requestUsers,
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../../common/preloader/preloader";
 import { withAuthRedirect } from "../../hoc/AuthRedirect";
 import { compose } from "redux";
+import {
+  getUsers,
+  getPageSize,
+  getTotalUsersCount,
+  getCurrentPage,
+  getIsFetching,
+  getFollowingInProgres,
+} from "../../redux/users-selectots";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsersThunkCreator(
-      this.props.currentPage,
-      this.props.pageSize
-    );
+    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNamber) => {
-    this.props.getUsersThunkCreator(pageNamber, this.props.pageSize);
+    this.props.requestUsers(pageNamber, this.props.pageSize);
   };
 
   render() {
@@ -44,14 +49,26 @@ class UsersContainer extends React.Component {
   }
 }
 
+// let mapStateToProps = (state) => {
+//   return {
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgres: state.usersPage.followingInProgres,
+//   };
+// };
+
+//selectors
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgres: state.usersPage.followingInProgres,
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgres: getFollowingInProgres(state),
   };
 };
 
@@ -62,7 +79,7 @@ export default compose(
     unfollow,
     setCurrentPage,
     toggleFollowingProgres,
-    getUsersThunkCreator,
+    requestUsers,
   })
 )(UsersContainer);
 
