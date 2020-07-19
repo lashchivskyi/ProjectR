@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import classes from "./ProfileInfo.module.css";
 
-// let stateWithSetState = useState(false);
-// let editMode = stateWithSetState[0];
-// let setEditMode = stateWithSetState[1];
-
 const ProfileStatusHooks = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(false);
