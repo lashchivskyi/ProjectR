@@ -8,11 +8,14 @@ import {
 } from "../../../utilits/validator/validator";
 import { Textarea } from "../../../common/formsControls/formsControls";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps !== this.props || nextState !== this.state;
+  // }
+
   let postsElements = props.posts.map((p) => (
     <Post key={p.id} message={p.message} likesCount={p.likesCount} />
   ));
-
   let onAddPost = (value) => {
     props.addPost(value.newPostText);
   };
@@ -24,7 +27,7 @@ const MyPosts = (props) => {
       <div className={classes.content}>{postsElements}</div>
     </div>
   );
-};
+});
 
 const maxLength10 = maxLengthCreator(10);
 
